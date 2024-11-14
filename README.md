@@ -1,7 +1,7 @@
 # Mecatronica-Proyectos
 Este repositorio es el que almacenará el desarrollo del proyecto para la asignatura Mecatrónica, del grado en ingeniería robótica software
 
-Este fixhero README.md se utilizará para presentar el proyecto en clase, pero, si quieres más información sin tener que leerla, puedes diretamente [leer desde aquí]().
+Este fixhero README.md se utilizará para presentar el proyecto en clase, pero, si quieres más información sin tener que leerla, puedes diretamente [leer desde aquí](#2.1.-documentación).
 
 # Presentación del proyecto. Cascarrabias-9000
 ## 1. Materiales
