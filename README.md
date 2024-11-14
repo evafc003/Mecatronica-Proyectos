@@ -1,7 +1,7 @@
 # Mecatronica-Proyectos
 Este repositorio es el que almacenará el desarrollo del proyecto para la asignatura Mecatrónica, del grado en ingeniería robótica software
 
-Para más info, visita la [wiki del proyecto](https://github.com/evafc003/Mecatronica-Proyectos/wiki). Este fichero README.md se utilizará a modo de presentación del proyecto.
+Este fixhero README.md se utilizará para presentar el proyecto en clase, pero, si quieres más información sin tener que leerla, puedes diretamente [leer desde aquí]().
 
 # Presentación del proyecto. Cascarrabias-9000
 ## 1. Materiales
@@ -30,6 +30,8 @@ Pensando en qué me podría basar, recordé [este vídeo de youtube](https://you
 Entonces, decidí replicarlo y mejorarlo a mi manera.
 
 ### 2.2. Funcionamiento
+#### 2.2.1. Documentación
+Como "funcionamiento personal", es decir, para ver cómo me he organizado y lo que he hecho en profundidad, existe la [wiki del proyecto](https://github.com/evafc003/Mecatronica-Proyectos/wiki).
 
 ## 3. Dificultades
 La principal difilcutad que tuve a la hora del desarrollo del proyecto fue que tengo una **visión espacial** bastante pobre.
