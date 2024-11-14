@@ -18,8 +18,8 @@ Para más info, visita la [wiki del proyecto](https://github.com/evafc003/Mecatr
 ##### Cuerpo
 ##### Tapa
 #### Cascarrabias
-#### Cuerpo
-#### Brazo
+##### Cuerpo
+##### Brazo
 
 ## 2. Funcionamiento e inspiración del proyecto
 ### 2.1. Inspiración
