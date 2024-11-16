@@ -12,14 +12,19 @@ Este fixhero README.md se utilizará para presentar el proyecto en clase, pero, 
 * 1 Sensor de ultrasonidos
 * 1 Sensor de humedad DHT11
 * Una impresora 3D para poder imprimir TODOS los diseños
+* Silicona Caliente
+* Cartón
+* Esponjas
+* Madera
+* Alambres
 
 ### 1.1. Diseños
 #### Caja
-##### Cuerpo
-##### Tapa
+##### [Cuerpo](https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Dise%C3%B1os_definitivos_imprimibles/Caja/Caja.stl)
+##### [Tapa](https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Dise%C3%B1os_definitivos_imprimibles/Caja/Tapa.stl)
 #### Cascarrabias
-##### Cuerpo
-##### Brazo
+##### [Cuerpo](https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Dise%C3%B1os_definitivos_imprimibles/Cascarrabias/Cascarrabias_con_mecanismo.stl)
+##### [Brazo](https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Multimedia/Vídeos/brazo_cascarrabias.mp4)
 
 ## 2. Funcionamiento e inspiración del proyecto
 ### 2.1. Inspiración
