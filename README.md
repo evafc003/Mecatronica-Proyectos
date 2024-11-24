@@ -18,6 +18,7 @@ Este fichero README.md se utilizará para presentar el proyecto en clase. Si qui
 * Esponjas
 * Madera
 * Alambres
+* Cinta blanca
 
 ### 1.1. Diseños
 Todos estos diseños fueron construidos en FreeCad, y son las piezas que componen el Cscarrabias-9000:
