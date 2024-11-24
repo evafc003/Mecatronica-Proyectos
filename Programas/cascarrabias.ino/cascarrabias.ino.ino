@@ -5,7 +5,7 @@
 Servo cabeza;
 Servo brazo;
 
-// Neccesary pins, edit as you need
+// Neccesary pins, EDIT AS YOU NEED
 int LED = 13;
 int state = 0;
 int SWITCH = 12;
@@ -42,6 +42,24 @@ float get_humidity(){
   return h;
 }
 
+void get_out_of_box(){
+  digitalWrite(LED, HIGH); // enciendo
+  delay(200);
+  cabeza.write(); // levanto
+  delay(600);
+  brazo.write(); // muevo brazo
+  return;
+}
+
+void get_in_box(){
+  digitalWrite(LED, LOW);
+  delay(200);
+  brazo.write(); // meto brazo
+  delay(600);
+  cabeza.write(); // me escondo
+  return;
+}
+
 // Setup function for getting started our proyect
 void setup() {
   Serial.begin(9600);
@@ -53,7 +71,7 @@ void setup() {
   digitalWrite(TRIG, LOW);
   dht.begin();
 
-  // Servo pins, edit as you need
+  // Servo pins, EDIT AS YOU NEED
   cabeza.attach(4);
   brazo.attach(5); 
 }
@@ -63,44 +81,54 @@ void loop() {
    switch (state) {
     case 0:
       if (digitalRead(SWITCH) == false){
-        digitalWrite(LED, HIGH); // enciendo
-        delay(200);
-        cabeza.write(270); // levanto
-        delay(600);
-        brazo.write(90); // muevo brazo
-      
-      }else{
-        digitalWrite(LED, LOW);
-        delay(200);
-        brazo.write(-90); // meto brazo
-        delay(600);
-        cabeza.write(-270); // me escondo
+        get_out_of_box();
+        delay(100)
+        get_in_box();
         state = state+1;
       }     
       break;
     case 1:
-      //do something when var equals 2
-      state = state+1;
+      if (digitalRead(SWITCH) == false){
+        get_out_of_box();
+        delay(100)
+        get_in_box();
+        state = state+1;
+      }     
       break;
     case 2:
-      //do something when var equals 2
-      state = state+1;
+      if (digitalRead(SWITCH) == false){
+        get_out_of_box();
+        delay(100)
+        get_in_box();
+        state = state+1;
+      
+      }
       break;
     case 3:
-      //do something when var equals 2
-      state = state+1;
+      if (digitalRead(SWITCH) == false){
+        get_out_of_box();
+        delay(100)
+        get_in_box();
+        state = state+1;
+      
+      }
       break;
     case 4:
-      //do something when var equals 2
-      state = state+1;
+      if (digitalRead(SWITCH) == false){
+        get_out_of_box();
+        delay(100)
+        get_in_box();
+        state = state+1;
+      
+      }
       break;
     case 5:
-      //do something when var equals 2
-      state = state+1;
-      break;
-    case 6:
-      //do something when var equals 2
-      state = 0;
+      if (digitalRead(SWITCH) == false){
+        get_out_of_box();
+        delay(100)
+        get_in_box();
+        state = state+1;
+      }
       break;
   }
 }
