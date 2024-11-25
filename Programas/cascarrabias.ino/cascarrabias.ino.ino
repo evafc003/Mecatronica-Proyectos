@@ -45,18 +45,18 @@ float get_humidity(){
 void get_out_of_box(){
   digitalWrite(LED, HIGH); // enciendo
   delay(200);
-  cabeza.write(); // levanto
+  cabeza.write(100); // levanto
   delay(600);
-  brazo.write(); // muevo brazo
+  brazo.write(-180); // muevo brazo
   return;
 }
 
 void get_in_box(){
   digitalWrite(LED, LOW);
   delay(200);
-  brazo.write(); // meto brazo
+  brazo.write(180); // meto brazo
   delay(600);
-  cabeza.write(); // me escondo
+  cabeza.write(180); // me escondo
   return;
 }
 
@@ -78,11 +78,13 @@ void setup() {
 
 // Principal program
 void loop() {
+   cabeza.write(180);
+   brazo.write(180);
    switch (state) {
     case 0:
       if (digitalRead(SWITCH) == false){
         get_out_of_box();
-        delay(100)
+        delay(1000);
         get_in_box();
         state = state+1;
       }     
@@ -90,7 +92,7 @@ void loop() {
     case 1:
       if (digitalRead(SWITCH) == false){
         get_out_of_box();
-        delay(100)
+        delay(1000);
         get_in_box();
         state = state+1;
       }     
@@ -98,7 +100,7 @@ void loop() {
     case 2:
       if (digitalRead(SWITCH) == false){
         get_out_of_box();
-        delay(100)
+        delay(1000);
         get_in_box();
         state = state+1;
       
@@ -107,7 +109,7 @@ void loop() {
     case 3:
       if (digitalRead(SWITCH) == false){
         get_out_of_box();
-        delay(100)
+        delay(1000);
         get_in_box();
         state = state+1;
       
@@ -116,7 +118,7 @@ void loop() {
     case 4:
       if (digitalRead(SWITCH) == false){
         get_out_of_box();
-        delay(100)
+        delay(1000);
         get_in_box();
         state = state+1;
       
@@ -125,9 +127,9 @@ void loop() {
     case 5:
       if (digitalRead(SWITCH) == false){
         get_out_of_box();
-        delay(100)
+        delay(1000);
         get_in_box();
-        state = state+1;
+        state = 0;
       }
       break;
   }
