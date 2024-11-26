@@ -28,6 +28,7 @@ Todos estos diseños fueron construidos en FreeCad, y son las piezas que compone
 ##### [Tapa](https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Dise%C3%B1os_definitivos_imprimibles/Caja/Tapa.stl)
 #### Cascarrabias
 ##### [Cuerpo](https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Dise%C3%B1os_definitivos_imprimibles/Cascarrabias/Cascarrabias_con_mecanismo.stl)
+##### [Soporte](https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Dise%C3%B1os_definitivos_imprimibles/Cascarrabias/soporte.stl)
 ##### [Brazo](https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Multimedia/Vídeos/brazo_cascarrabias.mp4)
 
 ## 2. Funcionamiento e inspiración del proyecto
