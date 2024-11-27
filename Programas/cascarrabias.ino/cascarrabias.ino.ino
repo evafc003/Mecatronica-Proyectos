@@ -13,14 +13,15 @@ int ECHO = 9;
 int HUM = 7;
 int HEAD_PIN = 4; 
 int ARM_PIN = 5;
+int BUZZER = 2;
 
 // Motor angles. EDIT AS YOU NEED
-int HEAD_UP = 100;
+int HEAD_UP = 50;
 int HEAD_DOWN = 180;
 int ARM_OUT = -180;
 int ARM_IN = 180;
-int HEAD_MED = -90;
-int ARM_MED = -90;
+int HEAD_MED = 90;
+int ARM_MED = 90;
 
 // initialise dht11 sensor
 DHT dht(HUM, DHT11);
@@ -81,6 +82,7 @@ void move_head(int velocity){
   cabeza.write(HEAD_MED);
   delay(velocity);
   cabeza.write(HEAD_UP);
+  return;
 }
 
 void move_arm(int velocity){
@@ -93,7 +95,7 @@ void move_arm(int velocity){
   brazo.write(ARM_MED);
   delay(velocity);
   brazo.write(ARM_IN);
-
+  return;
 }
 // Setup function for getting started our proyect
 void setup() {
@@ -103,6 +105,7 @@ void setup() {
   pinMode(ECHO, INPUT);
   pinMode(HUM, INPUT);
   pinMode(SWITCH, INPUT_PULLUP);
+  pinMode(BUZZER, OUTPUT);
   digitalWrite(TRIG, LOW);
   dht.begin();
   cabeza.attach(HEAD_PIN);
@@ -123,6 +126,17 @@ void loop() {
 
     // Elapsed time since button is pressed
     unsigned long elapsed_time = millis() - initial_time;
+    
+    tone(BUZZER, 900);
+    delay(100);
+    tone(BUZZER, 800);
+    delay(100);
+    noTone(BUZZER);
+    delay(100);
+
+    get_out_of_box();
+    delay(100);
+    move_arm(1000);
 
     if (elapsed_time > 3000 && elapsed_time <= 5000) {
       //  3 segundos
