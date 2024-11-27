@@ -7,11 +7,21 @@ Servo brazo;
 
 // Neccesary pins, EDIT AS YOU NEED
 int LED = 13;
-int state = 0;
 int SWITCH = 12;
 int TRIG = 10;
 int ECHO = 9;
 int HUM = 7;
+
+// State controller
+unsigned long initial_time = 0;
+
+// Motor angles. EDIT AS YOU NEED
+int HEAD_UP = 100;
+int HEAD_DOWN = -180;
+int ARM_OUT = -180;
+int ARM_IN = 180;
+int HEAD_MED = -90;
+int ARM_MED = -90;
 
 // initialise dht11 sensor
 DHT dht(HUM, DHT11);
@@ -43,23 +53,45 @@ float get_humidity(){
 }
 
 void get_out_of_box(){
-  digitalWrite(LED, HIGH); // enciendo
+  digitalWrite(LED, HIGH);
   delay(200);
-  cabeza.write(100); // levanto
+  cabeza.write(HEAD_UP);
   delay(600);
-  brazo.write(-180); // muevo brazo
+  brazo.write(ARM_OUT);
   return;
 }
 
 void get_in_box(){
   digitalWrite(LED, LOW);
   delay(200);
-  brazo.write(180); // meto brazo
+  brazo.write(HEAD_DOWN);
   delay(600);
-  cabeza.write(180); // me escondo
+  cabeza.write(ARM_IN);
   return;
 }
 
+void move_head(int velocity){
+  cabeza.write(HEAD_MED);
+  delay(velocity);
+  cabeza.write(HEAD_UP);
+  delay(velocity);
+  cabeza.write(HEAD_MED);
+  delay(velocity);
+  cabeza.write(HEAD_UP);
+}
+
+void move_arm(int velocity){
+  brazo.write(ARM_OUT);
+  delay(velocity);
+  brazo.write(ARM_MED);
+  delay(velocity);
+  brazo.write(ARM_OUT);
+  delay(velocity);
+  brazo.write(ARM_MED);
+  delay(velocity);
+  brazo.write(ARM_IN);
+
+}
 // Setup function for getting started our proyect
 void setup() {
   Serial.begin(9600);
@@ -78,59 +110,42 @@ void setup() {
 
 // Principal program
 void loop() {
-   cabeza.write(180);
-   brazo.write(180);
-   switch (state) {
-    case 0:
-      if (digitalRead(SWITCH) == false){
-        get_out_of_box();
-        delay(1000);
-        get_in_box();
-        state = state+1;
-      }     
-      break;
-    case 1:
-      if (digitalRead(SWITCH) == false){
-        get_out_of_box();
-        delay(1000);
-        get_in_box();
-        state = state+1;
-      }     
-      break;
-    case 2:
-      if (digitalRead(SWITCH) == false){
-        get_out_of_box();
-        delay(1000);
-        get_in_box();
-        state = state+1;
+  // Prepare motors' angle. EDIT IF YOU NEED
+  cabeza.write(180);
+  brazo.write(180);
+
+  if (digitalRead(SWITCH) == false){
+    get_out_of_box();
+    delay(200);
+    move_head(200);
+    delay(100);
+    move_arm(200);
+
+    // esperar 2 segundos
+    unsigned long current_time = millis();
+    while (current_time - initial_time < 2){
       
-      }
-      break;
-    case 3:
-      if (digitalRead(SWITCH) == false){
-        get_out_of_box();
-        delay(1000);
-        get_in_box();
-        state = state+1;
-      
-      }
-      break;
-    case 4:
-      if (digitalRead(SWITCH) == false){
-        get_out_of_box();
-        delay(1000);
-        get_in_box();
-        state = state+1;
-      
-      }
-      break;
-    case 5:
-      if (digitalRead(SWITCH) == false){
-        get_out_of_box();
-        delay(1000);
-        get_in_box();
-        state = 0;
-      }
-      break;
-  }
+      initial_time = current_time;
+    }
+    move_head(100);
+    delay(100);
+    move_arm(100);
+    
+
+    // esperar 3 segundos 
+    move_arm(200);
+
+    if (get_distance <= 3){
+      get_in_box();
+    }
+
+    delay(100);
+    get_out_of_box();
+    delay(100);
+    move_arm(100);
+  
+  }else{
+    delay(1000);
+    get_in_box();
+  }     
 }
