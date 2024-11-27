@@ -11,13 +11,12 @@ int SWITCH = 12;
 int TRIG = 10;
 int ECHO = 9;
 int HUM = 7;
-
-// State controller
-unsigned long initial_time = 0;
+int HEAD_PIN = 4; 
+int ARM_PIN = 5;
 
 // Motor angles. EDIT AS YOU NEED
 int HEAD_UP = 100;
-int HEAD_DOWN = -180;
+int HEAD_DOWN = 180;
 int ARM_OUT = -180;
 int ARM_IN = 180;
 int HEAD_MED = -90;
@@ -25,6 +24,10 @@ int ARM_MED = -90;
 
 // initialise dht11 sensor
 DHT dht(HUM, DHT11);
+
+// For control states
+bool pressed_button = false;
+unsigned long initial_time = 0;
 
 // FUNCTIONS WE NEED
 long get_distance(){
@@ -102,50 +105,40 @@ void setup() {
   pinMode(SWITCH, INPUT_PULLUP);
   digitalWrite(TRIG, LOW);
   dht.begin();
-
-  // Servo pins, EDIT AS YOU NEED
-  cabeza.attach(4);
-  brazo.attach(5); 
+  cabeza.attach(HEAD_PIN);
+  brazo.attach(ARM_PIN); 
 }
 
 // Principal program
 void loop() {
-  // Prepare motors' angle. EDIT IF YOU NEED
-  cabeza.write(180);
-  brazo.write(180);
+  cabeza.write(HEAD_DOWN);
+  brazo.write(ARM_IN);
 
-  if (digitalRead(SWITCH) == false){
-    get_out_of_box();
-    delay(200);
-    move_head(200);
-    delay(100);
-    move_arm(200);
-
-    // esperar 2 segundos
-    unsigned long current_time = millis();
-    while (current_time - initial_time < 2){
-      
-      initial_time = current_time;
+  if (digitalRead(SWITCH) == false) {
+    if (!pressed_button) {
+      // just pressed the button
+      pressed_button = true;
+      initial_time = millis();
     }
-    move_head(100);
-    delay(100);
-    move_arm(100);
-    
 
-    // esperar 3 segundos 
-    move_arm(200);
+    // Elapsed time since button is pressed
+    unsigned long elapsed_time = millis() - initial_time;
 
-    if (get_distance <= 3){
+    if (elapsed_time > 3000 && elapsed_time <= 5000) {
+      //  3 segundos
+    } 
+    else if (elapsed_time > 5000 && elapsed_time <= 8000) {
+      //  5 segundos
+    } 
+    else if (elapsed_time > 8000) {
+      //  8 segundos
+    }
+
+  } else {
+    // Button don't pressed, be inside the box and do nothing
+    if (pressed_button) {
+      pressed_button = false;
       get_in_box();
     }
-
-    delay(100);
-    get_out_of_box();
-    delay(100);
-    move_arm(100);
-  
-  }else{
-    delay(1000);
-    get_in_box();
-  }     
+  } 
 }
