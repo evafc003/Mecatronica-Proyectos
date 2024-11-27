@@ -12,6 +12,7 @@ Este fichero README.md se utilizará para presentar el proyecto en clase. Si qui
 * 1 LED (da igual el color)
 * 1 Sensor de ultrasonidos
 * 1 Sensor de humedad DHT11
+* 1 Zumbador
 * Una impresora 3D para poder imprimir TODOS los diseños
 * Silicona Caliente
 * Cartón
@@ -39,65 +40,65 @@ Pensando en qué me podría basar, recordé [este vídeo de youtube](https://you
 
 Entonces, decidí replicarlo y mejorarlo a mi manera.
 
+#### 2.1.2. Dificultades
+Sin embargo, a la hora del desarrollo me topé con varias dificultades:
+
+La principal difilcutad que tuve a la hora del desarrollo del proyecto fue que tengo una **visión espacial** bastante pobre, cosa que me dificultó mucho el proceso para hacer los diseños. De hecho, el diseño de la caja que muestro no funciona, y me tocó comprar unas visagras.
+
+Por otro lado, ajustar el piñón y los mecanismos en general a mi caja también se me hizo complicado, ya que todo este ajuste se hizo desde FreeCad.
+
+También, a la hora del montaje, también se me complicó un poco el hecho de colocar los motores, ya que tenía que visualizar el giro que iiban a hacer para que toodo fuese correctamente, pero, además de esto, tuve el problema de que el motor del brazo no era lo suficientemente fuerte como para ccionar el botón y tuve que cambiar radicalmente el enfoque del proyecto, ya que la función que le daba "gracia" a mi Cascarrabias-9000 era precisamente que él mismo accionase el botón.
+
+Para solucionar eso, el enfoque que le di fue hacer que no lo pulsara, si no que te obligase a tí a hacerlo, siendo muy, muy, pero que muy insistente. Cosa que funcionó bastante bien y le dio un toque más original al proyecto, ya que no es replicar el original y añadirle cosas, sino darle otra perspectiva.
+
 ### 2.2. Funcionamiento
 
 #### 2.2.1. Documentación
 Como "funcionamiento personal", es decir, para ver cómo me he organizado y lo que he hecho en profundidad, existe la [wiki del proyecto](https://github.com/evafc003/Mecatronica-Proyectos/wiki).
 
 #### 2.2.2. Funcionamiento del robot
-El funcionamiento del Cascarrabias- es muy sencillo, ya que, simplemente consta de un botón de que hay que accionar, y, cuando se acciona, encendemos un led que hace de "despertador", cosa que hace enfurecer a cascarrabias y lo hace salir para volver a accionar el botón, apagar la luz y seguir durmiendo. Este comportameinto se repite en bucle, sin embargo, tiene 6 comportamientos diferentes:
+El funcionamiento del Cascarrabias-9000 es muy sencillo, ya que, simplemente consta de un botón de que hay que accionar, y, cuando se acciona, encendemos un led que hace de "despertador" que hace enfurecer a cascarrabias y lo hace salir para obligarnos a volver a accionar el botón, para así apagar la luz y permitir que Cascarrabias siga durmiendo. Este comportameinto se repite en bucle, sin embargo, tiene ciertas curiosidades:
 
-##### COMPORTAMIENTO 1
+Dependiendo del tiempo que tardes en presionar de nuevo el botón, Cascarrabias se va enfureciendo y cada vez es más "agresivo", para así obligarnos a presionar el botón.
 
-Éste es el más sencillo de todos, el cual simplemente hace que cascarrabias salga, presione el botón  se esconda de nuevo.
+Para conseguir esto, se usan temporizadores que van llamando a funciones cuando toca, en un "plazo" de X, cuando pasa este plazo, el ciclo se repite y empezamos desde el principio, dejo a continuación lo que pasa y en qué momento:
 
-VIDEO
+##### Segundo x: Siendo Amables
 
-##### COMPORTAMIENTO 2
+La primera vez que despertamos a Cascarrabias, éste intenta ser amable y pedir educadamente que presionemos el botón. Para ello, hará movimientos y sonidos suaves, para que captes su mensaje.
 
-Éste comportamiento es algo más complejo que el anterior, ya que Cascarrabias sale, pero, en vez de apagar el botón directamente, hace unos movimientos que nos indican que dejemos el botón en paz antes de esconderse.
+##### Segundo x: Siendo menos amables
 
-VIDEO
+Si no captamos el mensaje a la primera, Cascarrabias irá perdiendo la paciencia, de modo que los movimientos y sonidos se alterarán un poco, pero aún no será desagradable.
 
-##### COMPORTAMIENTO 3
+##### Segundo x: Recordando nuestra existencia
 
-Para este comportamiento, lo que hace Cascarrabias sale, pero, una vez harto de que le despertemos por tercera vez, éste deja la mano encima del botón para que no podamos accionarlo, a no ser que acerquemos la mano al sensor de ultrasonidos para asustarle.
+La segunda vez que no sepas que lo que hay que hacer es presionar el botón, Cascarrabias dudará de tu inteligencia y/o atención y te indicará de nuevo que pulses el botón, haciendo un ruido de duda.
 
-VIDEO
+##### Segundo x: Comenzando a enfadarnos
 
-##### COMPORTAMIENTO 4
+Si Cascarrabias ve que no le prestas atención, comenzará a enfadarse y a volver sus movimientos más bruscos y sus sonidos más estridentes, de modo que se note que se ha enfadado.
 
-Este cuarto comportamiento es igual que el anterior, sin embargo, esta vez hay que soplar en el sensor de humedad para que Cascarrabias se esconda.
+##### Segundo x: Perdiendo la cordura
 
-VIDEO
+Este comportamiento será algo más agresivo que el anterior.
 
-##### COMPORTAMIENTO 5
+##### Segundo x: Volviendonos locos
 
-Para el comportamiento número 5, lo que hace cascarrabias es levantarse, accionar el botón e irse, sin embargo, cuando acercamos la mano par avolver accionar el botón, vuelve a salir sin darnos tiempo a hacerlo, a no ser que le dejemos tranquilo 10 segundos.
+Si llegas a este punto, no solo Cascarrabias habrá perdido los modales, sino que tú también lo harás si no pulsas el botón rápidamente.
 
-VIDEO
+A parte de estos comportamientos, si acercamos demasiado la mano o soplamos en el sensor de humedad, contribuiremos al enfado de Cascarrabias, de manera aleatoria.
 
-##### COMPORTAMIENTO 6
+## 3. Demostración del funcionamiento
 
-En el comportamiento número 6 podemos ver la desesperación de cascarrabias, ya que, una vez que accionamos el botón, la tapa de caja "vibrará" en señal de que cascarrabias está harto de nosotros antes de accionar de nuevo el botón, sin embargo, una vez lo acciona, tendremos que soplarle 3 veces para que se rinda y se vuelva a esconder.
+Una vez entendido lo que es y cómo funciona mi proyecto, ha llegado la hora de enseñarlo funcionando.
 
-VIDEO
-
-## 3. Dificultades
-La principal difilcutad que tuve a la hora del desarrollo del proyecto fue que tengo una **visión espacial** bastante pobre.
-
-Esto me dificultó mucho el proceso para hacer los diseños. 
-
-De hecho, el diseño de la caja que muestro no funciona, y me tocó comprar unas visagras.
-
-Por otro lado, ajustar el piñón y los mecanismos en general a mi caja también se me hizo complicado, ya que todo este ajuste se hizo desde FreeCad.
-
-Y, por último, a la hora del montaje, también se me complicó un poco el hecho de colocar los motores, ya que tenía que visualizar el giro que iiban a hacer para que toodo fuese correctamente.
-
-Pero, a pesar de todo esto, el proyecto consiguió salir adelante satisfactoriamente.
+VIDEO FINAL
 
 ## 4. Conclusión y posibles usos
 Como conclusión puedo aportar que este proyecto de robot educativo me ha enseñado a trabajar más con la **visión espacial** y el diseño 3D, ya que la programación, al ser una cosa muy usada en mi día a día, no me aportó mucho, todo eran cosas que ya había visto o muy parecidas a cosas hechas en el pasado.
+
+También como conclusión creo que ha sido un proyecto muy chulo que me ha divertido bastante, ya que partir del cero absoluto y acabr teniendo mi propio CAscarrabias-9000 ha sido muy satisfactorio e inspirador.
 
 En cuanto a los usos de mi robot, la verdad que no son muchos, pero se me ocurren estos 2:
 * Juguete
