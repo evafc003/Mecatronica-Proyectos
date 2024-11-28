@@ -57,9 +57,13 @@ Para solucionar eso, el enfoque que le di fue hacer que no lo pulsara, si no que
 Como "funcionamiento personal", es decir, para ver cómo me he organizado y lo que he hecho en profundidad, existe la [wiki del proyecto](https://github.com/evafc003/Mecatronica-Proyectos/wiki).
 
 #### 2.2.2. Funcionamiento del robot
-El funcionamiento del Cascarrabias-9000 es muy sencillo, ya que, simplemente consta de un botón de que hay que accionar, y, cuando se acciona, encendemos un led que hace de "despertador" que hace enfurecer a cascarrabias y lo hace salir para obligarnos a volver a accionar el botón, para así apagar la luz y permitir que Cascarrabias siga durmiendo. Este comportameinto se repite en bucle, sin embargo, tiene ciertas curiosidades:
+El funcionamiento del Cascarrabias-9000 es muy sencillo, ya que, simplemente consta de un botón de que hay que accionar, y, cuando se acciona, encendemos un led que hace de "despertador" que hace enfurecer a cascarrabias y lo hace salir para obligarnos a volver a accionar el botón, para así apagar la luz y permitir que Cascarrabias siga durmiendo. Para lograr este comportamiento, primero se ha seguido este circuito eléctrico para el hardware:
 
-Dependiendo del tiempo que tardes en presionar de nuevo el botón, Cascarrabias se va enfureciendo y cada vez es más "agresivo", para así obligarnos a presionar el botón.
+<p align="center">
+<img src= "https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Multimedia/Fotos/circuito_final.png", width=1080>
+</p>
+
+Y, para el software, lo que se ha implementado ha sido que, dependiendo del tiempo que tardes en presionar de nuevo el botón, Cascarrabias se va enfureciendo y cada vez es más "agresivo", para así obligarnos a presionar el botón.
 
 Para conseguir esto, se usan temporizadores que van llamando a funciones cuando toca, en un "plazo" de X, cuando pasa este plazo, el ciclo se repite y empezamos desde el principio, dejo a continuación lo que pasa y en qué momento:
 
