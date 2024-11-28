@@ -97,6 +97,7 @@ void move_arm(int velocity){
   brazo.write(ARM_IN);
   return;
 }
+
 // Setup function for getting started our proyect
 void setup() {
   Serial.begin(9600);
@@ -114,8 +115,7 @@ void setup() {
 
 // Principal program
 void loop() {
-  cabeza.write(HEAD_DOWN);
-  brazo.write(ARM_IN);
+  get_in_box() // puede que esto no haga falta
 
   if (digitalRead(SWITCH) == false) {
     if (!pressed_button) {
@@ -127,25 +127,36 @@ void loop() {
     // Elapsed time since button is pressed
     unsigned long elapsed_time = millis() - initial_time;
     
-    tone(BUZZER, 900);
-    delay(100);
-    tone(BUZZER, 800);
-    delay(100);
-    noTone(BUZZER);
-    delay(100);
+    if (elapsed_time <= 3000){ // SIENDO AMABLES
+      tone(BUZZER, 900);
+      delay(100);
+      tone(BUZZER, 800);
+      delay(100);
+      noTone(BUZZER);
+      delay(100);
 
-    get_out_of_box();
-    delay(100);
-    move_arm(1000);
+      get_out_of_box();
+      delay(100);
+      move_arm(1000);
 
-    if (elapsed_time > 3000 && elapsed_time <= 5000) {
-      //  3 segundos
-    } 
-    else if (elapsed_time > 5000 && elapsed_time <= 8000) {
-      //  5 segundos
-    } 
-    else if (elapsed_time > 8000) {
-      //  8 segundos
+    }else if (elapsed_time > 11000 && elapsed_time <= 15000) { // SIENDO MENOS AMABLES
+      tone(BUZZER, 900);
+      delay(1000);
+      tone(BUZZER, 800);
+      delay(1000);
+      noTone(BUZZER);
+      
+      delay(100);
+      move_arm(700);
+    
+    }else if (elapsed_time > 15000 && elapsed_time <= 20000) { // RECORDANDO NUESTRA EXISTENCIA
+      
+    }else if (elapsed_time > 25000 && elapsed_time <= 30000) { // COMENZANDO A ENFADARNOS
+      
+    }else if (elapsed_time > 35000 && elapsed_time <= 40000) { // PERDIENDO LA CORDURA
+      
+    }else if (elapsed_time > 500000) { // VOLVIENDONOS LOCOS
+      
     }
 
   } else {
