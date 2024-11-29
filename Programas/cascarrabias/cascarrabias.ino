@@ -30,6 +30,10 @@ DHT dht(HUM, DHT11);
 bool first_time = false;
 bool secuence_done = false;
 unsigned long initial_time = 0;
+int hum = 0;
+int dist = 0;
+int SCARED = 1;
+int DONT_SCARED = 2;
 
 // FUNCTIONS WE NEED
 long get_distance(){
@@ -42,27 +46,34 @@ long get_distance(){
   
   t = pulseIn(ECHO, HIGH);
   d = t/59;
-  
-  // Serial.print("Distancia: ");
-  // Serial.print(d);
-  // Serial.println("cm");
-  
+
   return d;
 }
 
 float get_humidity(){
   float h = dht.readHumidity();
-  // Serial.print("Humedad: ");
-  // Serial.println(h);
   return h;
 }
 
-void get_out_of_box(){
+void get_out_of_box(int state){
   digitalWrite(LED, HIGH);
   delay(200);
   cabeza.write(HEAD_UP);
-  delay(600);
-  brazo.write(ARM_OUT);
+  if (state != SCARED){
+    delay(600);
+    brazo.write(ARM_OUT);
+    delay(1000);
+    brazo.write(ARM_IN);
+    delay(600);
+    brazo.write(ARM_OUT);
+    delay(1000);
+    brazo.write(ARM_IN);
+    delay(600);
+    brazo.write(ARM_OUT);
+    delay(1000);
+    brazo.write(ARM_IN);
+  }
+  
   return;
 }
 
@@ -112,26 +123,41 @@ void setup() {
   dht.begin();
   cabeza.attach(HEAD_PIN);
   brazo.attach(ARM_PIN); 
+  return;
+}
+
+void get_scared_if_necesary(){
+  int hum = get_humidity();
+  int dist = get_distance();
+  Serial.println(hum);
+  Serial.println(dist);
+  if (hum > 70 || dist < 10){
+    tone(BUZZER, 2000);
+    get_in_box();
+    get_out_of_box(SCARED);
+  }
+  noTone(BUZZER);
+  return;
 }
 
 // Principal program
 void loop() {
-  get_in_box(); // puede que esto no haga falta
-
   if (digitalRead(SWITCH) == false) {
     // Elapsed time since button is pressed
     unsigned long current_time = millis();
     unsigned long elapsed_time = current_time - initial_time;
-    Serial.println(elapsed_time);
+    
     if (first_time == false){
       for(int i=900; i>=800; i--) {
         tone(BUZZER, i);
         delay(10);
       }
       noTone(BUZZER);
-      get_out_of_box();
+      get_out_of_box(DONT_SCARED);
       first_time = true;
     }
+    
+    get_scared_if_necesary();
 
     if (elapsed_time > 10000 && elapsed_time <= 11000){ // SIENDO AMABLES
       if (secuence_done == false){
@@ -144,6 +170,8 @@ void loop() {
         move_arm(1000);
         secuence_done = true;
       }
+
+      get_scared_if_necesary();
       
     }else if (elapsed_time > 20000 && elapsed_time <= 21000) { // SIENDO MENOS AMABLES
       if (secuence_done == true){
@@ -158,27 +186,70 @@ void loop() {
         secuence_done = false;
       }
 
+      get_scared_if_necesary();
+
     }else if (elapsed_time > 32000 && elapsed_time <= 33000) { // RECORDANDO NUESTRA EXISTENCIA 
       if (secuence_done == false){
-        Serial.println("HOLA");
+        for(int i=800; i<=900; i++) {
+          tone(BUZZER, i);
+          delay(10);
+        }
+        noTone(BUZZER);
         secuence_done = true;
+        delay(100);
+        move_arm(500);
+        delay(100);
+        move_arm(500);
       }
+
+      get_scared_if_necesary();
 
     }else if (elapsed_time > 40000 && elapsed_time <= 41000) { // COMENZANDO A ENFADARNOS
       if (secuence_done == true){
-        Serial.println("BUENAS");
+        for (int i = 0; i<=3; i++){
+          tone(BUZZER, 900);
+          delay(100);
+          tone(BUZZER, 800);
+          delay(100);
+        }
+        noTone(BUZZER);
+
+        move_head(500);
+        move_head(500);
+        move_arm(200);
+        move_arm(200);
+        move_arm(200);
+
         secuence_done = false;
       }
 
+      get_scared_if_necesary();
+
     }else if (elapsed_time > 55000 && elapsed_time <= 60000) { // PERDIENDO LA CORDURA
       if (secuence_done == false){
-        Serial.println("QUE TAL");
+        tone(BUZZER, 900);
+        delay(100);
+        move_head(300);
+        move_head(300);
+        move_head(300);
+        move_head(300);
+        move_arm(150);
+        move_arm(150);
+        move_arm(150); 
         secuence_done = true;
       }
+      noTone(BUZZER);
+      get_scared_if_necesary();
 
-    }else if (elapsed_time > 800000) { // VOLVIENDONOS LOCOS
-      initial_time = 0;
-      Serial.println("BIEEEEEEEEEN");
+    }else if (elapsed_time > 80000) { // VOLVIENDONOS LOCOS
+      tone(BUZZER, 1000);
+      move_head(200);
+      move_head(200);
+      move_head(200);
+      move_head(200);
+      move_arm(100);
+      move_arm(100);
+      move_arm(100); 
     }
 
   } else {
@@ -193,6 +264,7 @@ void loop() {
       }
       
       get_in_box();
+      
       unsigned long current_time = millis();
 
       if (current_time - initial_time >= 10000) {
