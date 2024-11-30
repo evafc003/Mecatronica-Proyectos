@@ -51,6 +51,8 @@ También, a la hora del montaje, también se me complicó un poco el hecho de co
 
 Para solucionar eso, el enfoque que le di fue hacer que no lo pulsara, si no que te obligase a tí a hacerlo, siendo muy, muy, pero que muy insistente. Cosa que funcionó bastante bien y le dio un toque más original al proyecto, ya que no es replicar el original y añadirle cosas, sino darle otra perspectiva.
 
+También un problema relacionado con los motores fue que no tenían fuerza tampoco para levantar la caja sin sobrecalentar el motor, cosa que hacia que la placa se sobrecalentase y reiniciase, por lo que tuve que cambiar esta pieza por una plancha de cartón a la hora de terminar el proyecto.
+
 ### 2.2. Funcionamiento
 
 #### 2.2.1. Documentación
@@ -72,38 +74,36 @@ Lo que en la vida real tiene este aspecto:
 Y, para el software, lo que se ha implementado ha sido que, dependiendo del tiempo que tardes en presionar de nuevo el botón, Cascarrabias se va enfureciendo y cada vez es más "agresivo", para así obligarnos a presionar el botón.
 
 Para conseguir esto, se usan temporizadores que van llamando a funciones cuando toca, en un "plazo" de X, cuando pasa este plazo, el ciclo se repite y empezamos desde el principio, dejo a continuación lo que pasa y en qué momento:
-
-##### Segundo x: Siendo Amables
+##### Segundo 10: Siendo Amables
 
 La primera vez que despertamos a Cascarrabias, éste intenta ser amable y pedir educadamente que presionemos el botón. Para ello, hará movimientos y sonidos suaves, para que captes su mensaje.
 
-##### Segundo x: Siendo menos amables
+##### Segundo 20: Siendo menos amables
 
 Si no captamos el mensaje a la primera, Cascarrabias irá perdiendo la paciencia, de modo que los movimientos y sonidos se alterarán un poco, pero aún no será desagradable.
 
-##### Segundo x: Recordando nuestra existencia
+##### Segundo 32: Recordando nuestra existencia
 
 La segunda vez que no sepas que lo que hay que hacer es presionar el botón, Cascarrabias dudará de tu inteligencia y/o atención y te indicará de nuevo que pulses el botón, haciendo un ruido de duda.
 
-##### Segundo x: Comenzando a enfadarnos
+##### Segundo 40: Comenzando a enfadarnos
 
 Si Cascarrabias ve que no le prestas atención, comenzará a enfadarse y a volver sus movimientos más bruscos y sus sonidos más estridentes, de modo que se note que se ha enfadado.
 
-##### Segundo x: Perdiendo la cordura
+##### Segundo 55: Perdiendo la cordura
 
 Este comportamiento será algo más agresivo que el anterior.
 
-##### Segundo x: Volviendonos locos
+##### Segundo 80: Volviéndonos locos
 
 Si llegas a este punto, no solo Cascarrabias habrá perdido los modales, sino que tú también lo harás si no pulsas el botón rápidamente.
 
-A parte de estos comportamientos, si acercamos demasiado la mano o soplamos en el sensor de humedad, contribuiremos al enfado de Cascarrabias, de manera aleatoria.
-
+A parte de estos comportamientos, si acercamos demasiado la mano o soplamos en el sensor de humedad, CAscarrabias se asustará, a no ser que esté demasiado enfadado.
 ## 3. Demostración del funcionamiento
 
 Una vez entendido lo que es y cómo funciona mi proyecto, ha llegado la hora de enseñarlo funcionando.
 
-VIDEO FINAL
+https://github.com/user-attachments/assets/525335d7-f0b2-42a6-8477-e751c7b411d2
 
 ## 4. Conclusión y posibles usos
 Como conclusión puedo aportar que este proyecto de robot educativo me ha enseñado a trabajar más con la **visión espacial** y el diseño 3D, ya que la programación, al ser una cosa muy usada en mi día a día, no me aportó mucho, todo eran cosas que ya había visto o muy parecidas a cosas hechas en el pasado.
