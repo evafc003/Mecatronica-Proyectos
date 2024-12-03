@@ -49,7 +49,7 @@ Por otro lado, ajustar el piñón y los mecanismos en general a mi caja también
 
 También, a la hora del montaje, también se me complicó un poco el hecho de colocar los motores, ya que tenía que visualizar el giro que iiban a hacer para que toodo fuese correctamente, pero, además de esto, tuve el problema de que el motor del brazo no era lo suficientemente fuerte como para ccionar el botón y tuve que cambiar radicalmente el enfoque del proyecto, ya que la función que le daba "gracia" a mi Cascarrabias-9000 era precisamente que él mismo accionase el botón.
 
-Para solucionar eso, el enfoque que le di fue hacer que no lo pulsara, si no que te obligase a tí a hacerlo, siendo muy, muy, pero que muy insistente. Cosa que funcionó bastante bien y le dio un toque más original al proyecto, ya que no es replicar el original y añadirle cosas, sino darle otra perspectiva.
+Para solucionar eso, el enfoque que le di fue hacer que no lo pulsara, sino que te obligase a tí a hacerlo, siendo muy, muy, pero que muy insistente. Cosa que funcionó bastante bien y le dio un toque más original al proyecto, ya que no es replicar el original y añadirle cosas, sino darle otra perspectiva.
 
 También un problema relacionado con los motores fue que no tenían fuerza tampoco para levantar la caja sin sobrecalentar el motor, cosa que hacia que la placa se sobrecalentase y reiniciase, por lo que tuve que cambiar esta pieza por una plancha de cartón a la hora de terminar el proyecto.
 
@@ -61,8 +61,14 @@ Como "funcionamiento personal", es decir, para ver cómo me he organizado y lo q
 #### 2.2.2. Funcionamiento del robot
 El funcionamiento del Cascarrabias-9000 es muy sencillo, ya que, simplemente consta de un botón de que hay que accionar, y, cuando se acciona, encendemos un led que hace de "despertador" que hace enfurecer a cascarrabias y lo hace salir para obligarnos a volver a accionar el botón, para así apagar la luz y permitir que Cascarrabias siga durmiendo. Para lograr este comportamiento, primero se ha seguido este circuito eléctrico para el hardware:
 
+##### Diagrama en ThinkerCad
 <p align="center">
 <img src= "https://github.com/evafc003/Mecatronica-Proyectos/blob/main/Multimedia/Fotos/circuito_final.png", width=1080>
+</p>
+
+##### Diagrama en KiCad
+<p align="center">
+<img src= "https://github.com/user-attachments/assets/0ab9875b-3bb3-4d6c-bd7a-f4f035806075">
 </p>
 
 Lo que en la vida real tiene este aspecto:
